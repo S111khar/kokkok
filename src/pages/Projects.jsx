@@ -57,35 +57,49 @@ const Projects = () => {
   gsap.registerPlugin(ScrollTrigger)
 
   useGSAP(function () {
-    // Animation for video containers entering viewport
-    gsap.from('.video-container', {
-      opacity: 0,
-      scale: 0.9,
-      y: 50,
-      duration: 0.8,
-      stagger: {
-        amount: 0.6
+    // Smooth animation for video containers entering viewport - no reverse fade
+    gsap.fromTo('.video-container', 
+      {
+        opacity: 0,
+        scale: 0.95,
+        y: 30
       },
-      scrollTrigger: {
-        trigger: '.projects-content',
-        start: 'top 80%',
-        end: 'bottom 20%',
-        toggleActions: 'play none none reverse'
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: {
+          amount: 0.4
+        },
+        scrollTrigger: {
+          trigger: '.video-container',
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
       }
-    })
+    )
 
-    // Section title animations
-    gsap.from('.section-title', {
-      opacity: 0,
-      y: 30,
-      duration: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: '.projects-content',
-        start: 'top 90%',
-        toggleActions: 'play none none reverse'
+    // Smooth section title animations - no reverse fade
+    gsap.fromTo('.section-title',
+      {
+        opacity: 0,
+        y: 20
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.section-title',
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
       }
-    })
+    )
   })
 
   return (
